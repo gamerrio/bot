@@ -17,14 +17,17 @@ async def on_ready():
 @bot.command(description="returns the latency", brief="*ping")
 async def ping(ctx):
     await ctx.send(f"✅ The ping is: {round(bot.latency, 4)} seconds.")
+    print(f"{ctx.author} executed ping")
 
 
 @bot.command(description="returns a random number between two args if given", brief="*rng [from this] [to this]")
 async def rng(ctx, first='1', last='100'):
     if first >= last:
         await ctx.send("The second value has to be greater than the first value.")
+        print(f"{ctx.author} executed rng (args error)")
     else:
         await ctx.send(random.randint(int(first), int(last)))
+        print(f"{ctx.author} executed rng")
 
 
 
