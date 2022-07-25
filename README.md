@@ -2,5 +2,9 @@
 
 Multipurpose Discord bot made with discord.py
 
-TODO:
--Make better name
+# TODO: <br />
+- Better name
+- Avatar command
+- Embeds
+- Reddit integration
+
