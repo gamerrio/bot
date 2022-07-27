@@ -54,13 +54,35 @@ async def gpa(ctx, *args):
 async def avi(ctx, member: discord.Member = None):
     if member is not discord.Member:
         await ctx.send(ctx.author.avatar_url)
+        print(f"{ctx.author} executed avi (success) (no arg provided)")
     else:
         av = member.avatar_url
         await ctx.send(av)
+        print(f"{ctx.author} executed avi (success)")
 
-    
+
+@bot.command(description="converts celsius to Fahrenheit", brief="*fahr [celsius value]", aliases=["toFahr", "tofahr"])
+async def fahr(ctx, c=None):
+    try:
+        c = float(c)
+        f = round((c*(9/5) + 32), 2)
+        await ctx.send(f"{c} celsius is {f} Fahrenheit.")
+        print(f"{ctx.author} executed fahr (success)")
+    except:
+        await ctx.send("Enter the value in celsius to convert it to Fahrenheit.")
+        print(f"{ctx.author} executed fahr (error)")
 
 
+@bot.command(description="converts Fahrenheit to celsius", brief="*cels [Fahrenheit value]", aliases=["toCels", "tocels"])
+async def cels(ctx, f=None):
+    try:
+        f = float(f)
+        c = round(((f - 32) * (5/9)), 2)
+        await ctx.send(f"{f} Fahrenheit is {c} celsius.")
+        print(f"{ctx.author} executed cels (success)")
+    except:
+        await ctx.send("Enter the value in Fahrenheit to convert it to celsius.")
+        print(f"{ctx.author} executed cels (error)")
 
 
 bot.run(token)
