@@ -107,4 +107,36 @@ async def kilo(ctx, lb=None):
         print(f"{ctx.author} executed kilo (error)")
 
 
+@bot.command(description="Plays rock, paper, scissors", brief="*rps [choice]", aliases=["rockpaperscissors"])
+async def rps(ctx, choice=""):
+    emojis = {
+        "rock": "🪨",
+        "paper": "🧻",
+        "scissors": "✂️",
+    }
+
+    choice = choice.lower()
+    if choice != "rock" and choice != "paper" and choice != "scissors":
+        choice = random.choice(["rock", "paper", "scissors"])
+        await ctx.send(f"Invalid input. Your randomly chosen input is {choice} {emojis[choice]}.")
+
+    comp = random.choice(["rock", "paper", "scissors"])
+
+    results = {
+        "rock": "scissors",
+        "paper": "rock",
+        "scissors": "paper",
+    }
+
+    if results[choice] == comp:
+        await ctx.send(f"You won! \nThe computer chose {comp} {emojis[comp]}. \n{emojis[choice]} > {emojis[comp]}")
+    elif results[comp] == choice:
+        await ctx.send(f"You lost! \nThe computer chose {comp} {emojis[comp]}. \n{emojis[choice]} < {emojis[comp]}")
+    else:
+        await ctx.send(f"It's a draw! \nThe computer chose {comp} too {emojis[comp]}. \n{emojis[choice]} = {emojis[comp]}")
+
+    print(f"{ctx.author} executed rps (success)")
+
+
+
 bot.run(token)
