@@ -18,14 +18,14 @@ async def on_ready():
 @bot.command(description="returns the latency", brief="*ping")
 async def ping(ctx):
     await ctx.send(f"✅ The ping is: {round(bot.latency, 4)} seconds.")
-    print(f"{ctx.author} executed ping")
+    print(f"{ctx.author} executed ping") # for showing what command is executed by who
 
 
 @bot.command(description="returns a random number between two args if given", brief="*rng [from this] [to this]")
 async def rng(ctx, first='1', last='100'):
     if first >= last:
         await ctx.send("The second value has to be greater than the first value.")
-        print(f"{ctx.author} executed rng (args error)")
+        print(f"{ctx.author} executed rng (args error)")       
     else:
         await ctx.send(random.randint(int(first), int(last)))
         print(f"{ctx.author} executed rng (success)")
@@ -36,13 +36,14 @@ async def gpa(ctx, *args):
     if len(args) != 2:
         await ctx.send("Please enter A and B amounts.\nExample: *gpa 35 3")
         print(f"{ctx.author} executed gpa (args length error)")
+
         return
 
     try:
         a = int(args[0])
         b = int(args[1])
-
         gpa = ((a*4)+(b*3))/(a+b)
+
         await ctx.send(f"Your GPA is {gpa}")
         print(f"{ctx.author} executed gpa (success)")
     except:
@@ -57,6 +58,7 @@ async def avi(ctx, member: discord.Member = None):
         print(f"{ctx.author} executed avi (success) (no arg provided)")
     else:
         av = member.avatar_url
+
         await ctx.send(av)
         print(f"{ctx.author} executed avi (success)")
 
@@ -66,6 +68,7 @@ async def fahr(ctx, c=None):
     try:
         c = float(c)
         f = round((c*(9/5) + 32), 2)
+
         await ctx.send(f"{c} celsius is {f} Fahrenheit.")
         print(f"{ctx.author} executed fahr (success)")
     except:
@@ -78,6 +81,7 @@ async def cels(ctx, f=None):
     try:
         f = float(f)
         c = round(((f - 32) * (5/9)), 2)
+
         await ctx.send(f"{f} Fahrenheit is {c} celsius.")
         print(f"{ctx.author} executed cels (success)")
     except:
@@ -89,6 +93,7 @@ async def cels(ctx, f=None):
 async def pound(ctx, kg=None):
     try:
         lb = round((float(kg) * 2.205), 3)
+
         await ctx.send(f"{kg} kilogram(s) ≈ {lb} pound(s).")
         print(f"{ctx.author} executed pound (success)")
     except:
@@ -100,6 +105,7 @@ async def pound(ctx, kg=None):
 async def kilo(ctx, lb=None):
     try:
         kg = round((float(lb) / 2.205), 3)
+
         await ctx.send(f"{lb} pound(s) ≈ {kg} kilogram(s).")
         print(f"{ctx.author} executed kilo (success)")
     except:
@@ -139,4 +145,4 @@ async def rps(ctx, choice=""):
 
 
 
-bot.run(token)
+bot.run(token) # token from config.json
