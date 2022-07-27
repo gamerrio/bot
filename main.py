@@ -50,7 +50,7 @@ async def gpa(ctx, *args):
         print(f"{ctx.author} executed gpa (invalid args)")
 
 
-@bot.command()
+@bot.command(description="returns a user's avi", brief="*avi [user]", aliases=["avatar", "ava"])
 async def avi(ctx, member: discord.Member = None):
     if member is not discord.Member:
         await ctx.send(ctx.author.avatar_url)
@@ -83,6 +83,28 @@ async def cels(ctx, f=None):
     except:
         await ctx.send("Enter the value in Fahrenheit to convert it to celsius.")
         print(f"{ctx.author} executed cels (error)")
+
+
+@bot.command(description="converts kilograms to pounds", brief="*pound [kilogram value]", aliases=["lb", "pounds"])
+async def pound(ctx, kg=None):
+    try:
+        lb = round((float(kg) * 2.205), 3)
+        await ctx.send(f"{kg} kilogram(s) ≈ {lb} pound(s).")
+        print(f"{ctx.author} executed pound (success)")
+    except:
+        await ctx.send("Enter a kilogram value to convert it to pounds.")
+        print(f"{ctx.author} executed pound (error)")
+
+
+@bot.command(description="converts pounds to kilograms", brief="*kilo [pound value]", aliases=["kg", "kilogram", "kilos", "kilograms"])
+async def kilo(ctx, lb=None):
+    try:
+        kg = round((float(lb) / 2.205), 3)
+        await ctx.send(f"{lb} pound(s) ≈ {kg} kilogram(s).")
+        print(f"{ctx.author} executed kilo (success)")
+    except:
+        await ctx.send("Enter a pound value to convert it to kilograms.")
+        print(f"{ctx.author} executed kilo (error)")
 
 
 bot.run(token)
