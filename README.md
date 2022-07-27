@@ -2,9 +2,13 @@
 
 Multipurpose Discord bot made with discord.py
 
-# TODO: <br />
+# TODO:
 - Better name
-- Avatar command
+- Avatar command error checking
 - Embeds
 - Reddit integration
+- Unit conversion commands
+- User welcoming?
+- Notifications for Youtube channel uploads?
+
 
