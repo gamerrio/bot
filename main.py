@@ -52,8 +52,8 @@ async def gpa(ctx, *args):
 
 
 @bot.command(description="returns a user's avi", brief="*avi [user]", aliases=["avatar", "ava"])
-async def avi(ctx, member: discord.Member = None):
-    if member is not discord.Member:
+async def avi(ctx, *,member: discord.Member = None):
+    if member is None:
         await ctx.send(ctx.author.avatar_url)
         print(f"{ctx.author} executed avi (success) (no arg provided)")
     else:
